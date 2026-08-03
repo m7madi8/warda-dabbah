@@ -1,0 +1,21 @@
+.contact-section {
+    background-color: var(--base-100);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-glass {
+    background: rgba(255, 255, 255, 0.45);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(201, 168, 124, 0.35);
+    box-shadow: 0 30px 70px -30px rgba(45, 42, 38, 0.2);
+}
+
+.contact-pill {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.contact-pill:hover {
+    transform: translateY(-2px);
+}

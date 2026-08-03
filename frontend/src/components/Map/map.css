@@ -1,0 +1,22 @@
+.map-section {
+    background-color: var(--base-100);
+    position: relative;
+}
+
+.map-frame {
+    filter: grayscale(0.4) sepia(0.5) saturate(0.7) brightness(1.03) contrast(0.96);
+}
+
+.map-overlay {
+    background: rgba(201, 168, 124, 0.22);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+}
+
+.map-glass {
+    background: rgba(245, 242, 237, 0.72);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 30px 70px -30px rgba(45, 42, 38, 0.45);
+}

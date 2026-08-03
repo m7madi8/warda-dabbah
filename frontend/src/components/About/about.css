@@ -1,0 +1,85 @@
+.about-section {
+    background-color: var(--base-100);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-content {
+    position: relative;
+    z-index: 10;
+}
+
+.about-text {
+    opacity: 0;
+    transform: translateY(80px);
+}
+
+.about-image-wrapper {
+    opacity: 0;
+    transform: scale(0.92);
+    background-color: var(--base-200);
+    box-shadow: 0 25px 60px -15px rgba(45, 42, 38, 0.15);
+}
+
+.about-image-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(45, 42, 38, 0.45) 0%,
+        rgba(45, 42, 38, 0.05) 40%,
+        transparent 70%
+    );
+}
+
+.about-image-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: 1.4rem;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    direction: ltr;
+}
+
+.about-badge-name {
+    font-family: "Syncopate", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #ffffff;
+    font-size: clamp(0.6rem, 1vw, 0.85rem);
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.about-badge-tagline {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: #d8c9b0;
+    font-size: clamp(0.45rem, 0.7vw, 0.58rem);
+    white-space: nowrap;
+}
+
+.about-stats {
+    background: linear-gradient(135deg, rgba(232, 220, 200, 0.45), rgba(245, 242, 237, 0.1));
+}
+
+.stat-item {
+    opacity: 0;
+    transform: scale(0.85);
+}
+
+.stat-item .stat-number {
+    font-family: "Cairo", sans-serif;
+}
+
+@media (max-width: 1023px) {
+    .about-image-wrapper {
+        min-height: 360px;
+    }
+}

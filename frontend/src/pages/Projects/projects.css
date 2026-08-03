@@ -1,0 +1,115 @@
+.projects-page {
+    background-color: var(--base-100);
+    min-height: 100vh;
+    padding-top: 2rem;
+}
+
+.projects-header {
+    background: linear-gradient(to bottom, var(--base-100), var(--base-200));
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-container {
+    position: relative;
+    z-index: 10;
+}
+
+.filter-tab {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.3s ease;
+}
+
+.filter-tab:hover {
+    transform: translateY(-2px);
+}
+
+.projects-grid {
+    position: relative;
+    z-index: 10;
+}
+
+.project-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+}
+
+.project-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image {
+    transition: transform 0.5s ease;
+}
+
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+/* Modal Styles */
+.project-modal {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--base-100);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--terracotta);
+    border-radius: 4px;
+}
+
+.modal-images img {
+    transition: transform 0.3s ease;
+}
+
+.modal-images img:hover {
+    transform: scale(1.02);
+}

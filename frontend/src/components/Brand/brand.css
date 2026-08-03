@@ -1,0 +1,104 @@
+.brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    direction: ltr;
+}
+
+.brand-logo__name {
+    font-family: "Syncopate", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.05;
+    white-space: nowrap;
+}
+
+.brand-logo__tagline {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 0.35em;
+    white-space: nowrap;
+}
+
+.brand-logo--light .brand-logo__name {
+    color: #2d2a26;
+}
+
+.brand-logo--light .brand-logo__tagline {
+    color: #a6947c;
+}
+
+.brand-logo--dark .brand-logo__name {
+    color: #ffffff;
+}
+
+.brand-logo--dark .brand-logo__tagline {
+    color: #d1d1d1;
+}
+
+.brand-logo--sm .brand-logo__name {
+    font-size: 0.65rem;
+}
+
+.brand-logo--sm .brand-logo__tagline {
+    font-size: 0.45rem;
+    letter-spacing: 0.35em;
+}
+
+.brand-logo--md .brand-logo__name {
+    font-size: 1rem;
+}
+
+.brand-logo--md .brand-logo__tagline {
+    font-size: 0.62rem;
+}
+
+.brand-logo--lg .brand-logo__name {
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
+}
+
+.brand-logo--lg .brand-logo__tagline {
+    font-size: clamp(0.55rem, 1.2vw, 0.85rem);
+}
+
+.brand-logo--hero .brand-logo__name {
+    font-size: clamp(3.5rem, 11vw, 8.5rem);
+    letter-spacing: 0.1em;
+}
+
+.brand-logo--xl .brand-logo__name {
+    font-size: clamp(2.5rem, 13vw, 7rem);
+    letter-spacing: 0.1em;
+}
+
+.brand-logo--xl .brand-logo__tagline {
+    font-size: clamp(0.6rem, 2.5vw, 2rem);
+    letter-spacing: 0.38em;
+}
+
+.brand-logo--align-end {
+    align-items: flex-end;
+    text-align: right;
+}
+
+@media (max-width: 1023px) {
+    .brand-logo--xl .brand-logo__name {
+        font-size: clamp(1.7rem, 8vw, 3.2rem);
+        letter-spacing: 0.08em;
+        line-height: 1.15;
+        white-space: normal;
+        max-width: 90vw;
+        padding: 0 1rem;
+    }
+
+    .brand-logo--xl .brand-logo__tagline {
+        font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+        letter-spacing: 0.3em;
+    }
+}
