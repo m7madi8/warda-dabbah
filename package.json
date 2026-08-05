@@ -1,5 +1,5 @@
 {
-  "name": "capsule-root",
+  "name": "warda-root",
   "private": true,
   "scripts": {
     "dev": "cd frontend && npm run dev",

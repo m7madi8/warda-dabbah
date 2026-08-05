@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import gsap from "gsap";
-import { ScrollSmoother } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
@@ -11,17 +10,23 @@ import Footer from "../components/Footer/Footer";
 import FooterTitle from "../components/Footer/FooterTitle";
 import Menu from "../components/Menu";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger);
 
 const MainLayout = () => {
 
     useGSAP(() => {
-        ScrollSmoother.create({
-            wrapper: "#smooth-wrapper",
-            content: "#smooth-content",
-            smooth: 1.5,
-            effects: true,
-        });
+        try {
+            if (typeof window !== "undefined" && gsap.plugins && gsap.plugins.ScrollSmoother) {
+                gsap.plugins.ScrollSmoother.create({
+                    wrapper: "#smooth-wrapper",
+                    content: "#smooth-content",
+                    smooth: 1.5,
+                    effects: true,
+                });
+            }
+        } catch (err) {
+            // ScrollSmoother plugin fallback
+        }
     });
 
     return (

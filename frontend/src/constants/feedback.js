@@ -1,20 +1,20 @@
 export const feedbackH1LG = [
     [
-        "Staying at Capsules® in the",
+        "Staying at Warda® in the",
         "California desert redefined my",
         "retreat — modern design meets",
         "nature, and every sunset feels",
         "like a serene masterpiece."
     ],
     [
-        "Capsules® offered the perfect",
+        "Warda® offered the perfect",
         "escape — sleek, modern spaces",
         "surrounded by desert stillness.",
         "Each moment felt peaceful,",
         "grounded, and truly unique."
     ],
     [
-        "Capsules® was the perfect",
+        "Warda® was the perfect",
         "desert hideaway — stylish,",
         "peaceful, and fully surrounded",
         "by stunning views day and",

@@ -7,12 +7,21 @@ import ProjectDetail from "../pages/ProjectDetail/ProjectDetail";
 
 const router = createBrowserRouter([
     {
-        path: "/capsule", // GitHub Pages repo name
+        path: "/",
         element: <MainLayout />, // Layout wrapper
         children: [
             { path: "", element: <Home /> }, // default page
             { path: "projects", element: <Projects /> }, // projects page
             { path: "projects/:id", element: <ProjectDetail /> }, // project detail page
+        ],
+    },
+    {
+        path: "/warda",
+        element: <MainLayout />,
+        children: [
+            { path: "", element: <Home /> },
+            { path: "projects", element: <Projects /> },
+            { path: "projects/:id", element: <ProjectDetail /> },
         ],
     },
 ]);
