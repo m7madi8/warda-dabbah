@@ -1,22 +1,197 @@
+/* ============================================
+   Map / Location section — map.css
+   تصميم هادئ ومضبوط: عمودين، بدون تراكم تأثيرات
+   ============================================ */
+
 .map-section {
     background-color: var(--base-100);
+    padding: 6rem 3rem;
+}
+
+.map-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+    align-items: stretch;
+    max-width: 82rem;
+    margin-inline: auto;
+}
+
+/* ---------- Info column ---------- */
+.map-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.1rem;
+}
+
+.map-eyebrow {
+    font-family: "Syncopate", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+}
+
+.map-title {
+    font-family: "Cairo", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--base-300);
+    line-height: 1.3;
+    margin: 0;
+}
+
+.map-title span {
+    color: var(--natural);
+    font-weight: 400;
+}
+
+.map-address {
+    font-family: "Cairo", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--natural);
+    margin: 0;
+}
+
+.map-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--base-300) 10%, transparent);
+    margin-top: 0.5rem;
+}
+
+.map-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: "Cairo", sans-serif;
+    font-size: 0.9rem;
+    color: var(--base-300);
+    text-decoration: none;
+    padding-top: 0.6rem;
+    transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.map-contact-link svg {
+    font-size: 0.75rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.map-contact-link:hover {
+    color: var(--terracotta);
+    gap: 1rem;
+}
+
+.map-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    align-self: flex-start;
+    margin-top: 0.75rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 9999px;
+    background: var(--base-300);
+    color: var(--base-100);
+    font-family: "Cairo", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background-color 0.35s ease, transform 0.35s ease;
+}
+
+.map-cta svg {
+    font-size: 0.75rem;
+}
+
+.map-cta:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* ---------- Visual column ---------- */
+.map-visual {
     position: relative;
+    min-height: 22rem;
+}
+
+.map-frame-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    border-radius: 1.75rem;
+    overflow: hidden;
 }
 
 .map-frame {
-    filter: grayscale(0.4) sepia(0.5) saturate(0.7) brightness(1.03) contrast(0.96);
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    /* تدرج رمادي خفيف فقط — بدون تكديس فلاتر */
+    filter: grayscale(0.65) contrast(0.97);
 }
 
-.map-overlay {
-    background: rgba(201, 168, 124, 0.22);
-    mix-blend-mode: soft-light;
+.map-pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 999px;
+    background: var(--accent);
+    border: 3px solid var(--base-100);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--base-300) 30%, transparent);
+    transform: translate(-50%, -50%);
     pointer-events: none;
 }
 
-.map-glass {
-    background: rgba(245, 242, 237, 0.72);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    box-shadow: 0 30px 70px -30px rgba(45, 42, 38, 0.45);
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .map-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .map-inner {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+    }
+
+    .map-visual,
+    .map-frame-wrap {
+        min-height: 18rem;
+    }
+
+    .map-cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .map-reveal,
+    .map-frame-wrap {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ---------- Print ---------- */
+@media print {
+    .map-pin {
+        display: none;
+    }
+
+    .map-frame {
+        filter: none;
+    }
 }

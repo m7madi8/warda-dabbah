@@ -1,0 +1,117 @@
+/* menumap.css — BEM */
+
+.menu-map {
+  padding: 6rem 3rem;
+  background: var(--base-100);
+}
+
+.menu-map__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.menu-map__eyebrow {
+  font-family: "Syncopate", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+
+.menu-map__title {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--base-300);
+  margin: 0;
+}
+
+.menu-map__body {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.menu-map__canvas {
+  position: relative;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  background: var(--base-200);
+  min-height: 26rem;
+}
+
+.menu-map__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.menu-map__grid {
+  stroke: color-mix(in srgb, var(--base-300) 12%, transparent);
+  stroke-width: 1;
+}
+
+.menu-map__line {
+  stroke: var(--terracotta);
+  stroke-width: 2;
+}
+
+.menu-map__pin-dot {
+  fill: var(--accent);
+}
+
+.menu-map__pin {
+  position: absolute;
+  top: 37.5%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background: var(--base-300);
+  color: var(--base-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 0.6rem 1.5rem color-mix(in srgb, var(--base-300) 35%, transparent);
+}
+
+.menu-map__info {
+  border-radius: 2.5rem;
+  background: var(--base-300);
+  color: var(--base-100);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.menu-map__info h3 {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.menu-map__info p {
+  font-family: "Cairo", sans-serif;
+  font-weight: 300;
+  color: var(--base-200);
+  margin: 0;
+}
+
+.menu-map__hours {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--accent) !important;
+}
+
+@media (max-width: 900px) {
+  .menu-map { padding: 4rem 1.25rem; }
+  .menu-map__body { grid-template-columns: 1fr; }
+  .menu-map__canvas { min-height: 20rem; }
+}

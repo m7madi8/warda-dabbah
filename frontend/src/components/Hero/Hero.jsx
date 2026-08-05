@@ -6,6 +6,7 @@ import mobileHeroVideo from "../../assets/hero-mobile.mp4";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
 import BrandLogo from "../Brand/BrandLogo";
+import Reserve from "../Reserve";
 
 const Hero = () => {
 
@@ -55,12 +56,13 @@ const Hero = () => {
     return (
         <section className="hero-section w-dvw md:h-dvh h-[100vh] md:p-2 p-2.5 mb-20">
             <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden">
+                <Reserve />
                 <div className="responsive-mobile">
                     {/* Background image (down layer) */}
-                    <div className="hero-img absolute inset-0 bg-[url('./assets/cap1.png')] bg-no-repeat bg-cover bg-center z-0 md:block hidden" />
+                    <div className="hero-img absolute inset-0 bg-[url('./assets/hero-background.jpg')] bg-no-repeat bg-cover bg-center z-0 md:block hidden" />
 
                     {/* Mobile video fallback (mobile only) */}
-                    <div className="block lg:hidden mt-6 mb-6">
+                    <div className="relative block lg:hidden mt-6 mb-6">
                         <video
                             ref={mobileVideoRef}
                             src={mobileHeroVideo}
@@ -72,30 +74,44 @@ const Hero = () => {
                             preload="auto"
                             className="w-full max-h-[70vh] rounded-[2rem] object-cover object-center shadow-[0_-25px_45px_-10px_rgba(255,0,0,0.15)]"
                         ></video>
-                    </div>
 
-                    {/* Sound toggle (mobile only) */}
-                    <button
-                        type="button"
-                        onClick={toggleSound}
-                        aria-label={isMuted ? "تشغيل الصوت" : "كتم الصوت"}
-                        aria-pressed={!isMuted}
-                        className="lg:hidden absolute bottom-6 left-6 z-20 grid place-items-center w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white shadow-lg shadow-black/10 transition-all duration-300 hover:scale-105 hover:bg-white/20 active:scale-95"
-                    >
-                        {isMuted ? (
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" fill="currentColor" stroke="none" />
-                                <line x1="22" x2="16" y1="9" y2="15" />
-                                <line x1="16" x2="22" y1="9" y2="15" />
-                            </svg>
-                        ) : (
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" fill="currentColor" stroke="none" />
-                                <path d="M16 9a5 5 0 0 1 0 6" />
-                                <path d="M19.364 18.364a9 9 0 0 0 0-12.728" />
-                            </svg>
-                        )}
-                    </button>
+                        {/* Sound toggle (mobile only) */}
+                        <button
+                            type="button"
+                            onClick={toggleSound}
+                            aria-label={isMuted ? "تشغيل الصوت" : "كتم الصوت"}
+                            aria-pressed={!isMuted}
+                            className="absolute bottom-4 left-4 z-30 grid place-items-center w-12 h-12 rounded-full
+                                       bg-black/20 backdrop-blur-xl
+                                       border border-white/25
+                                       shadow-[0_4px_20px_rgba(0,0,0,0.35)]
+                                       text-white
+                                       transition-all duration-500 ease-out
+                                       hover:bg-black/30 hover:border-[#c9a87c]/60 hover:scale-105
+                                       active:scale-90"
+                        >
+                            {/* Soft glow ring inviting the tap, fades once unmuted */}
+                            <span
+                                className={`absolute inset-0 rounded-full ring-1 ring-[#c9a87c]/50 ${
+                                    isMuted ? "animate-ping opacity-60" : "opacity-0"
+                                } transition-opacity duration-700 pointer-events-none`}
+                            />
+
+                            {isMuted ? (
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="relative">
+                                    <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" fill="currentColor" stroke="none" />
+                                    <line x1="22" x2="16" y1="9" y2="15" />
+                                    <line x1="16" x2="22" y1="9" y2="15" />
+                                </svg>
+                            ) : (
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="relative">
+                                    <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" fill="currentColor" stroke="none" />
+                                    <path d="M16 9a5 5 0 0 1 0 6" />
+                                    <path d="M19.364 18.364a9 9 0 0 0 0-12.728" />
+                                </svg>
+                            )}
+                        </button>
+                    </div>
 
                     {/* Smoke video (upper layer) */}
                     <video

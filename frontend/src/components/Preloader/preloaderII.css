@@ -22,35 +22,47 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    width: min(90vw, 520px);
+    justify-content: center;
+    gap: 2.75rem;
+    width: min(90vw, 420px);
+    padding: 0 1.5rem;
+    box-sizing: border-box;
 }
 
 .preloader-logo {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
     direction: ltr;
-    gap: 0.6rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .preloader-brand-name {
     font-family: "Syncopate", sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.7rem, 6vw, 3.2rem);
-    letter-spacing: 0.12em;
+    font-weight: 400;
+    font-size: clamp(0.75rem, 2.7vw, 1.5rem);
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    line-height: 1.25;
+    line-height: 1;
     color: #ffffff;
-    max-width: 90vw;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 100%;
+    /* pull the trailing letter-spacing back so the word stays optically centered */
+    margin-right: -0.28em;
+    padding-left: 0.28em;
 }
 
 .preloader-progress-track {
-    width: 100%;
+    width: min(65%, 220px);
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.08);
     overflow: hidden;
+    border-radius: 999px;
 }
 
 .preloader-progress-fill {
@@ -60,13 +72,6 @@
     transform-origin: left center;
     transform: scaleX(0);
     will-change: transform;
-}
-
-.preloader-counter {
-    font-family: "Syncopate", sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    color: rgba(255, 255, 255, 0.55);
 }
 
 .preloader-mask {
@@ -92,6 +97,22 @@
 }
 
 @media (max-width: 768px) {
+    .preloader-inner {
+        gap: 2.25rem;
+        width: min(90vw, 380px);
+    }
+
+    .preloader-brand-name {
+        font-size: clamp(0.68rem, 3.6vw, 1.15rem);
+        letter-spacing: 0.22em;
+        margin-right: -0.22em;
+        padding-left: 0.22em;
+    }
+
+    .preloader-progress-track {
+        width: min(70%, 180px);
+    }
+
     .preloader-mask {
         mask:
             linear-gradient(#2d2a26, #2d2a26),
@@ -99,8 +120,40 @@
         mask-composite: subtract;
         -webkit-mask-composite: source-out;
     }
+}
+
+@media (max-width: 480px) {
+    .preloader-inner {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .preloader-brand-name {
+        font-size: clamp(0.6rem, 4.2vw, 0.95rem);
+        letter-spacing: 0.16em;
+        margin-right: -0.16em;
+        padding-left: 0.16em;
+    }
+
+    .preloader-progress-track {
+        width: min(75%, 150px);
+    }
+}
+
+@media (min-width: 1440px) {
+    .preloader-brand-name {
+        font-size: 1.65rem;
+        letter-spacing: 0.3em;
+        margin-right: -0.3em;
+        padding-left: 0.3em;
+    }
 
     .preloader-inner {
-        gap: 1.5rem;
+        width: min(80vw, 480px);
+        gap: 3rem;
+    }
+
+    .preloader-progress-track {
+        width: min(60%, 240px);
     }
 }

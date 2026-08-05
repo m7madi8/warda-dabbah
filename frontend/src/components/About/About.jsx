@@ -11,12 +11,13 @@ const About = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Image entrance - scale & fade
             gsap.fromTo('.about-image-wrapper',
-                { scale: 0.92, opacity: 0 },
+                { scale: 0.94, opacity: 0 },
                 {
                     scale: 1,
                     opacity: 1,
-                    duration: 1.2,
+                    duration: 1.3,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: '.about-section',
@@ -25,25 +26,27 @@ const About = () => {
                 }
             );
 
+            // Image subtle parallax on scroll
             gsap.from('.about-image-wrapper img', {
-                scale: 1.15,
-                duration: 1.4,
+                scale: 1.12,
+                duration: 1.5,
                 ease: 'power2.out',
                 scrollTrigger: {
                     trigger: '.about-section',
                     start: 'top 75%',
                     end: 'bottom top',
-                    scrub: 1.5,
+                    scrub: 1.2,
                 },
             });
 
+            // Text stagger entrance
             gsap.fromTo('.about-text',
-                { y: 80, opacity: 0 },
+                { y: 70, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 1,
-                    stagger: 0.15,
+                    duration: 1.1,
+                    stagger: 0.12,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: '.about-section',
@@ -52,18 +55,18 @@ const About = () => {
                 }
             );
 
-            // Count-up animation for stats
+            // Count-up animation for stats with refined timing
             document.querySelectorAll('.stat-number').forEach((el) => {
                 const target = parseInt(el.dataset.target, 10);
                 const suffix = el.dataset.suffix || '';
                 const obj = { value: 0 };
                 gsap.to(obj, {
                     value: target,
-                    duration: 2.2,
+                    duration: 2.5,
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: '.about-stats',
-                        start: 'top 85%',
+                        start: 'top 80%',
                     },
                     onUpdate: () => {
                         el.textContent = `${Math.round(obj.value)}${suffix}`;
@@ -76,79 +79,77 @@ const About = () => {
     }, []);
 
     return (
-        <section className="about-section min-h-screen py-16 md:py-24 px-2 md:px-8 mb-10 flex items-center" ref={sectionRef}>
+        <section className="about-section min-h-screen py-20 md:py-32 px-4 md:px-8 flex items-center" ref={sectionRef}>
             <div className="max-w-7xl mx-auto w-full">
-                <div className="about-grid grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-stretch">
-                    <div className="about-image-wrapper relative rounded-[2.5rem] overflow-hidden min-h-[420px] md:min-h-[560px] order-2 lg:order-1">
+                {/* Main content grid */}
+                <div className="about-grid grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-stretch">
+                    {/* Image - clean and minimal */}
+                    <div className="about-image-wrapper relative rounded-2xl overflow-hidden min-h-[420px] md:min-h-[580px] order-2 lg:order-1">
                         <img
                             src={engineerPhoto}
-                            alt="WARDA DABBAH - Interior Design"
+                            alt="Warda Dabbah - Interior Design"
                             className="w-full h-full object-cover object-top"
                         />
                         <div className="about-image-overlay absolute inset-0 pointer-events-none" />
-                        <div className="about-image-badge absolute bottom-6 right-6 md:bottom-8 md:right-8">
-                            <span className="about-badge-name">WARDA DABBAH</span>
-                            <span className="about-badge-tagline">Interior Design</span>
-                        </div>
                     </div>
 
-                    <div className="about-content flex flex-col justify-center px-2 md:px-6 order-1 lg:order-2">
-                        <span className="about-text about-label text-[var(--accent)] text-sm md:text-base font-semibold tracking-widest mb-4">
-                            من نحن
+                    {/* Content - text-driven, generous spacing */}
+                    <div className="about-content flex flex-col justify-center order-1 lg:order-2">
+                        <span className="about-text about-label text-[var(--accent)] text-xs md:text-sm font-semibold tracking-[0.2em] uppercase mb-6 md:mb-8">
+                            من أنا
                         </span>
-                        <h2 className="about-text text-4xl md:text-6xl lg:text-7xl font-bold text-[var(--base-300)] mb-6 leading-tight">
-                            شغف بالتفاصيل
+
+                        <h2 className="about-text text-5xl md:text-7xl lg:text-8xl font-bold text-[var(--base-300)] mb-8 md:mb-12 leading-[1.1]">
+                            أصمم
                             <br />
-                            <span className="text-[var(--natural)]">وإبداع في كل زاوية</span>
+                            <span className="text-[var(--natural)]">مساحات راقية</span>
                         </h2>
-                        <div className="about-text space-y-5 text-base md:text-lg text-[var(--natural)] leading-relaxed">
-                            <p>
-                                WARDA DABBAH مهندسة معمارية ومصممة ديكور داخلي، تؤمن بأن كل مساحة تحكي قصة — وكل تفصيل يعكس شخصية أصحابها وذوقهم الرفيع.
+
+                        <div className="about-text space-y-6 text-base md:text-lg text-[var(--natural)] leading-relaxed font-light">
+                            <p className="max-w-md">
+                                أنا وردة ذباح، مهندسة معمارية ومصممة ديكور داخلي. أؤمن بأن كل مساحة تحمل قصة فريدة تستحق أن تُروى بأسلوب راقٍ ومتقن.
                             </p>
-                            <p>
-                                فلسفتها في التصميم تقوم على دمج الأصالة العربية المعاصرة مع أحدث صيحات التصميم العالمي، مستخدمة مواد طبيعية فاخرة وألوان دافئة تخلق أجواء مريحة ومبهجة.
-                            </p>
-                            <p>
-                                تعمل عن كثب مع عملائها لفهم احتياجاتهم وتطلعاتهم، ثم تحوّل أحلامهم إلى واقع ملموس يجمع بين الجمال والعملية والاستدامة.
+                            <p className="max-w-md">
+                                أسعى إلى خلق بيئات تجمع بين الجمال الخالص والوظيفة الذكية، مع عناية بأدق التفاصيل التي تعكس شخصيتك وتلبي احتياجاتك اليومية.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                {/* Stats - merged into About */}
-                <div className="about-stats relative mt-14 md:mt-24 rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden px-6 md:px-14 py-12 md:py-20">
-                    <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-0">
-                        <div className="stat-item md:flex-1 md:pe-14 md:border-e border-[var(--accent)] text-center md:text-start">
+                {/* Stats Section - refined and clean */}
+                <div className="about-stats relative mt-20 md:mt-32 rounded-3xl overflow-hidden px-8 md:px-16 py-16 md:py-24">
+                    <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-12 md:gap-0">
+                        <div className="stat-item md:flex-1 md:pe-12 md:border-e border-[var(--accent)] border-opacity-40 text-center md:text-start">
                             <div
-                                className="stat-number text-7xl md:text-[8.5rem] leading-none font-bold text-[var(--base-300)]"
+                                className="stat-number text-7xl md:text-8xl leading-none font-bold text-[var(--base-300)]"
                                 data-target="10"
                                 data-suffix="+"
                             >
                                 +10
                             </div>
-                            <div className="mt-4 text-base md:text-lg text-[var(--base-300)] font-semibold">سنوات خبرة</div>
+                            <div className="mt-5 text-sm md:text-base text-[var(--base-300)] font-medium tracking-wide">سنوات خبرة</div>
                         </div>
 
-                        <div className="stat-item md:flex-1 md:px-14 md:border-e border-[var(--accent)] text-center md:text-start">
+                        <div className="stat-item md:flex-1 md:px-12 md:border-e border-[var(--accent)] border-opacity-40 text-center md:text-start">
                             <div
-                                className="stat-number text-6xl md:text-7xl leading-none font-bold text-[var(--base-300)]"
+                                className="stat-number text-7xl md:text-8xl leading-none font-bold text-[var(--base-300)]"
                                 data-target="50"
                                 data-suffix="+"
                             >
                                 +50
                             </div>
-                            <div className="mt-4 text-base md:text-lg text-[var(--base-300)] font-semibold">مشروع منجز</div>
+                            <div className="mt-5 text-sm md:text-base text-[var(--base-300)] font-medium tracking-wide">مشروع منجز</div>
                         </div>
 
-                        <div className="stat-item md:flex-1 md:ps-14 text-center md:text-start">
+                        <div className="stat-item md:flex-1 md:ps-12 text-center md:text-start">
                             <div
-                                className="stat-number text-6xl md:text-7xl leading-none font-bold text-[var(--base-300)]"
+                                className="stat-number text-7xl md:text-8xl leading-none font-bold text-[var(--base-300)]"
                                 data-target="100"
                                 data-suffix="%"
                             >
                                 100%
                             </div>
-                            <div className="mt-4 text-base md:text-lg text-[var(--base-300)] font-semibold">رضا العملاء</div>
+                            <div className="mt-5 text-sm md:text-base text-[var(--base-300)] font-medium tracking-wide">رضا العملاء</div>
                         </div>
                     </div>
                 </div>

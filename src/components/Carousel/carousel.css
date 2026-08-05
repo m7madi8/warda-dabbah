@@ -1,0 +1,133 @@
+/* carousel.css — BEM */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.carousel__viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel__track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--base-100) 35%, transparent);
+  background: color-mix(in srgb, var(--base-300) 35%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: var(--base-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  z-index: 2;
+}
+
+.carousel__arrow:hover {
+  background: var(--accent);
+  color: var(--base-300);
+}
+
+/* RTL: "السابق" على الجهة اليمينية (start)، "التالي" على اليسار (end) */
+.carousel__arrow--prev {
+  inset-inline-end: 1.25rem;
+}
+
+.carousel__arrow--next {
+  inset-inline-start: 1.25rem;
+}
+
+.carousel__footer {
+  position: absolute;
+  bottom: 1.25rem;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 2;
+}
+
+.carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--base-300) 40%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.carousel__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: color-mix(in srgb, var(--base-100) 45%, transparent);
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.carousel__dot--active {
+  width: 1.4rem;
+  background: var(--accent);
+}
+
+.carousel__counter {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--base-100);
+  background: color-mix(in srgb, var(--base-300) 40%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .carousel__arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .carousel__footer {
+    bottom: 0.9rem;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+}

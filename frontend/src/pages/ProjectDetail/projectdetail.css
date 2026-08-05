@@ -1,0 +1,230 @@
+/* projectdetail.css — BEM, uses only :root variables */
+
+.project-detail {
+  background-color: var(--base-100);
+  min-height: 100vh;
+  padding: 6.5rem 5vw 5rem;
+  position: relative;
+}
+
+.project-detail--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: 100vh;
+  text-align: center;
+  font-family: "Cairo", sans-serif;
+  color: var(--natural);
+}
+
+/* ---------- Back link ---------- */
+.project-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: "Cairo", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--base-300);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.project-detail__back svg {
+  transform: scaleX(-1); /* يشير للخلف بصريًا في RTL */
+}
+
+.project-detail__back:hover {
+  gap: 0.9rem;
+  color: var(--terracotta);
+}
+
+/* ---------- Hero carousel ---------- */
+.project-detail__hero {
+  width: 100%;
+  height: min(65vh, 42rem);
+  border-radius: 2.5rem;
+  overflow: hidden;
+  margin-bottom: 3.5rem;
+}
+
+/* ---------- Body: intro + meta ---------- */
+.project-detail__body {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--base-300) 10%, transparent);
+}
+
+.project-detail__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.project-detail__eyebrow {
+  font-family: "Syncopate", sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+
+.project-detail__title {
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  color: var(--base-300);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.project-detail__desc {
+  font-family: "Cairo", sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--natural);
+  margin: 0.5rem 0 0;
+  max-width: 42rem;
+}
+
+.project-detail__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding-inline-start: 2rem;
+  border-inline-start: 1px solid color-mix(in srgb, var(--base-300) 12%, transparent);
+}
+
+.project-detail__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.project-detail__meta-label {
+  font-family: "Cairo", sans-serif;
+  font-size: 0.75rem;
+  color: var(--natural);
+}
+
+.project-detail__meta-value {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--base-300);
+}
+
+/* ---------- Secondary gallery ---------- */
+.project-detail__gallery {
+  max-width: 82rem;
+  margin: 4rem auto 5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.project-detail__gallery-item {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  height: 18rem;
+}
+
+.project-detail__gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-detail__gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+/* ---------- Next project ---------- */
+.project-detail__next {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding: 3.5rem 0;
+  text-align: center;
+  text-decoration: none;
+  border-top: 1px solid color-mix(in srgb, var(--base-300) 10%, transparent);
+}
+
+.project-detail__next-label {
+  font-family: "Syncopate", sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+
+.project-detail__next-title {
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  color: var(--base-300);
+  transition: color 0.35s ease;
+}
+
+.project-detail__next:hover .project-detail__next-title {
+  color: var(--accent);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .project-detail {
+    padding: 5.5rem 1.25rem 4rem;
+  }
+
+  .project-detail__hero {
+    height: 22rem;
+    border-radius: 1.75rem;
+  }
+
+  .project-detail__body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .project-detail__meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border-inline-start: none;
+    padding-inline-start: 0;
+    border-top: 1px solid color-mix(in srgb, var(--base-300) 12%, transparent);
+    padding-top: 1.5rem;
+  }
+
+  .project-detail__gallery {
+    grid-template-columns: 1fr 1fr;
+    margin: 3rem auto 3.5rem;
+  }
+
+  .project-detail__gallery-item {
+    height: 12rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .project-detail__gallery {
+    grid-template-columns: 1fr;
+  }
+}

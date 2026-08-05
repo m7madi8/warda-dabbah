@@ -1,0 +1,384 @@
+/* ============================================
+   Reserve / Consultation booking — reserve.css
+   يستخدم فقط المتغيرات المعرّفة في :root
+   لوحة جانبية بارتفاع الشاشة الكاملة، مطابقة للمرجع
+   ============================================ */
+
+/* ---------- Trigger button ---------- */
+.reserve-trigger {
+  border: none;
+  cursor: pointer;
+  font-family: "Cairo", sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 769px) {
+  .reserve-trigger {
+    top: 4rem;
+    left: 2rem;
+    transform: none;
+  }
+}
+
+.reserve-trigger:hover {
+  transform: translateX(-3px);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--base-300) 25%, transparent);
+}
+
+.reserve-trigger__label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--base-300);
+}
+
+.reserve-trigger__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Backdrop (page stays visible + dimmed behind) ---------- */
+.reserve-modal {
+  background: color-mix(in srgb, var(--base-300) 55%, transparent);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+}
+
+/* ---------- Sliding panel ---------- */
+.reserve-modal__panel {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0; /* RTL: يلتصق بالحافة اليمينية من الشاشة */
+  width: min(38rem, 92vw);
+  height: 100%;
+  background: var(--base-300);
+  display: flex;
+  flex-direction: column;
+  border-start-end-radius: 2.5rem;
+  border-end-end-radius: 2.5rem;
+  box-shadow: -1.5rem 0 4rem color-mix(in srgb, var(--base-300) 45%, transparent);
+}
+
+.reserve-modal__scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4.5rem 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--terracotta) var(--base-200);
+}
+
+.reserve-modal__scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.reserve-modal__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.reserve-modal__scroll::-webkit-scrollbar-thumb {
+  background: var(--terracotta);
+  border-radius: 10px;
+}
+
+/* ---------- Header ---------- */
+.reserve-modal__header {
+  margin-bottom: 2rem;
+}
+
+.reserve-modal__title {
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  font-size: 1.65rem;
+  color: var(--base-100);
+  line-height: 1.5;
+  margin: 0 0 0.75rem;
+}
+
+.reserve-modal__subtitle {
+  font-family: "Cairo", sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: color-mix(in srgb, var(--base-100) 70%, transparent);
+  margin: 0;
+}
+
+.reserve-modal__close {
+  position: absolute;
+  top: 2rem;
+  inset-inline-end: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--base-100) 10%, transparent);
+  color: var(--base-100);
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.reserve-modal__close:hover {
+  background: color-mix(in srgb, var(--base-100) 20%, transparent);
+  transform: rotate(90deg);
+}
+
+/* ---------- Steps ---------- */
+.reserve-step {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+}
+
+.reserve-step__label {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--base-100);
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+/* ---------- Project type cards ---------- */
+.reserve-types {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.reserve-type-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.5rem 0.75rem;
+  border: 2px solid color-mix(in srgb, var(--base-100) 18%, transparent);
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--base-100) 5%, transparent);
+  cursor: pointer;
+  font-family: "Cairo", sans-serif;
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.25s ease;
+}
+
+.reserve-type-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--base-100) 40%, transparent);
+}
+
+.reserve-type-card--active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.reserve-type-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--base-100) 10%, transparent);
+  color: var(--accent);
+  font-size: 1.25rem;
+}
+
+.reserve-type-card--active .reserve-type-card__icon {
+  background: var(--accent);
+  color: var(--base-300);
+}
+
+.reserve-type-card__label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--base-100);
+  text-align: center;
+}
+
+/* ---------- Fields ---------- */
+.reserve-datetime {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.reserve-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.reserve-field__label {
+  font-family: "Cairo", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--base-100) 70%, transparent);
+}
+
+.reserve-field__input {
+  font-family: "Cairo", sans-serif;
+  font-size: 0.95rem;
+  color: var(--base-100);
+  background: color-mix(in srgb, var(--base-100) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--base-100) 20%, transparent);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  color-scheme: dark;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.reserve-field__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--base-100) 12%, transparent);
+}
+
+/* ---------- Error ---------- */
+.reserve-error {
+  margin-top: -0.75rem;
+  margin-bottom: 1.5rem;
+  font-family: "Cairo", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #e08a6f;
+}
+
+/* ---------- Summary bar (sticky to panel bottom) ---------- */
+.reserve-summary {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--base-100) 14%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.reserve-summary__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.reserve-summary__label {
+  font-family: "Cairo", sans-serif;
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--base-100) 55%, transparent);
+}
+
+.reserve-summary__value {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--base-100);
+}
+
+.reserve-submit-btn {
+  margin-inline-start: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.75rem;
+  border: none;
+  cursor: pointer;
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--base-100);
+  color: var(--base-300);
+  border-radius: 9999px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+}
+
+.reserve-submit-btn svg {
+  transform: scaleX(-1); /* يبقي السهم مشيراً للأعلى-يسار بصرياً في RTL */
+}
+
+.reserve-submit-btn:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ---------- Success state ---------- */
+.reserve-modal__success {
+  padding-top: 1rem;
+}
+
+.reserve-modal__success-title {
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--base-100);
+  margin-bottom: 0.75rem;
+}
+
+.reserve-modal__success-text {
+  font-family: "Cairo", sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: color-mix(in srgb, var(--base-100) 80%, transparent);
+  margin-bottom: 1.5rem;
+}
+
+.reserve-modal__done-btn {
+  padding: 0.8rem 2rem;
+  border: none;
+  cursor: pointer;
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: var(--base-100);
+  color: var(--base-300);
+  border-radius: 9999px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.reserve-modal__done-btn:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .reserve-modal__panel {
+    width: 100vw;
+    border-radius: 0;
+  }
+
+  .reserve-modal__scroll {
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .reserve-types {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .reserve-type-card {
+    padding: 1rem 0.4rem;
+  }
+
+  .reserve-datetime {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .reserve-summary {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .reserve-submit-btn {
+    margin-inline-start: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}

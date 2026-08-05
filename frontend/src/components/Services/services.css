@@ -14,8 +14,21 @@
     overflow: hidden;
 }
 
+/* إضافة opacity/visibility/z-index صريحة لكل شاشة — GSAP بيتحكم فيهم بعد
+   الميونت عبر autoAlpha، بس هاي القيم الافتراضية بتضمن سلوك صحيح حتى
+   قبل ما JS يشتغل (أول رسمة بالمتصفح) */
+.screen-0 {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
 .screen-1 {
     opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    /* الشاشة المخفية ما لازم تستقبل أي تفاعل ولا تتراكب فوق الظاهرة */
+    pointer-events: none;
 }
 
 .service-img {

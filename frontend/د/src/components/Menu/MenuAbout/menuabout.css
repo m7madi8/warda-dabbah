@@ -1,0 +1,87 @@
+/* menuabout.css — BEM */
+
+.menu-about {
+  padding: 6rem 3rem;
+  background: var(--base-200);
+  border-radius: 3rem;
+  margin: 1.5rem;
+}
+
+.menu-about__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.menu-about__eyebrow {
+  font-family: "Syncopate", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+
+.menu-about__title {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--base-300);
+  margin: 0;
+}
+
+.menu-about__statements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--base-300) 15%, transparent);
+}
+
+.menu-about__statement {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  line-height: 1.5;
+  color: var(--base-300);
+  margin: 0;
+  border-inline-start: 2px solid var(--accent);
+  padding-inline-start: 1.25rem;
+}
+
+.menu-about__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding-top: 3.5rem;
+}
+
+.menu-about__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.menu-about__stat-value {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: var(--terracotta);
+  line-height: 1;
+}
+
+.menu-about__stat-label {
+  font-family: "Cairo", sans-serif;
+  font-weight: 500;
+  color: var(--base-300);
+}
+
+@media (max-width: 900px) {
+  .menu-about { padding: 4rem 1.5rem; margin: 1rem; border-radius: 2rem; }
+  .menu-about__statements,
+  .menu-about__stats {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}

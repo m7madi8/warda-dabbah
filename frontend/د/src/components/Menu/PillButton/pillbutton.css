@@ -1,0 +1,80 @@
+/* pillbutton.css — BEM, uses studio design tokens */
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: "Cairo", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.pill-btn:hover {
+  transform: translateY(-2px);
+}
+
+.pill-btn:active {
+  transform: translateY(0);
+}
+
+.pill-btn--light {
+  background: var(--base-100);
+  color: var(--base-300);
+}
+
+.pill-btn--light .pill-btn__icon {
+  background: var(--base-300);
+  color: var(--base-100);
+}
+
+.pill-btn--dark {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--base-100) 35%, transparent);
+  color: var(--base-100);
+}
+
+.pill-btn--dark .pill-btn__icon {
+  background: var(--accent);
+  color: var(--base-300);
+}
+
+.pill-btn--accent {
+  background: var(--accent);
+  color: var(--base-300);
+}
+
+.pill-btn--accent .pill-btn__icon {
+  background: var(--base-300);
+  color: var(--accent);
+}
+
+.pill-btn__label {
+  white-space: nowrap;
+  padding-inline-start: 0.25rem;
+}
+
+.pill-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  transition: transform 0.5s ease;
+}
+
+/* RTL: the reference's arrow points up-right; mirrored for Arabic reading flow */
+[dir="rtl"] .pill-btn__icon svg {
+  transform: scaleX(-1);
+}
+
+.pill-btn:hover .pill-btn__icon {
+  transform: rotate(45deg);
+}

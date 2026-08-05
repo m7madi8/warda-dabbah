@@ -1,0 +1,169 @@
+/* menuoverlaynav.css — BEM */
+
+.menu-overlay-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  flex-direction: column;
+  background: var(--base-300);
+  visibility: hidden;
+  opacity: 0;
+  padding: 2.5rem;
+}
+
+.menu-overlay-nav__close {
+  position: absolute;
+  top: 2rem;
+  inset-inline-end: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--base-100) 25%, transparent);
+  background: transparent;
+  color: var(--base-100);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.4s ease;
+  z-index: 2;
+}
+
+.menu-overlay-nav__close:hover {
+  background: color-mix(in srgb, var(--base-100) 12%, transparent);
+  transform: rotate(90deg);
+}
+
+.menu-overlay-nav__inner {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding-block: 5rem 2rem;
+}
+
+.menu-overlay-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.menu-overlay-nav__item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  background: none;
+  border: none;
+  border-top: 1px solid color-mix(in srgb, var(--base-100) 12%, transparent);
+  padding: 1rem 0;
+  cursor: pointer;
+  text-align: right;
+  color: var(--base-200);
+  transition: color 0.35s ease, padding-inline-start 0.35s ease;
+}
+
+.menu-overlay-nav__item:last-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--base-100) 12%, transparent);
+}
+
+.menu-overlay-nav__item-index {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.menu-overlay-nav__item-label {
+  font-family: "Cairo", sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.menu-overlay-nav__item:hover,
+.menu-overlay-nav__item:focus-visible {
+  color: var(--base-100);
+  padding-inline-start: 1rem;
+}
+
+.menu-overlay-nav__preview {
+  position: relative;
+  height: 70vh;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  background: var(--base-200);
+}
+
+.menu-overlay-nav__preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+}
+
+.menu-overlay-nav__preview-tag {
+  position: absolute;
+  bottom: 1.5rem;
+  inset-inline-start: 1.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--base-300) 55%, transparent);
+  backdrop-filter: blur(20px);
+  border: 1px solid color-mix(in srgb, var(--base-100) 20%, transparent);
+  color: var(--base-100);
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.menu-overlay-nav__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--base-100) 12%, transparent);
+}
+
+.menu-overlay-nav__socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.menu-overlay-nav__socials a {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--base-100) 25%, transparent);
+  color: var(--base-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.menu-overlay-nav__socials a:hover {
+  background: color-mix(in srgb, var(--base-100) 12%, transparent);
+}
+
+.menu-overlay-nav__note {
+  font-family: "Cairo", sans-serif;
+  font-size: 0.85rem;
+  color: var(--natural);
+}
+
+@media (max-width: 900px) {
+  .menu-overlay-nav__inner {
+    grid-template-columns: 1fr;
+    padding-block: 4.5rem 1.5rem;
+  }
+  .menu-overlay-nav__preview {
+    display: none;
+  }
+  .menu-overlay-nav__item-label {
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
+  }
+}

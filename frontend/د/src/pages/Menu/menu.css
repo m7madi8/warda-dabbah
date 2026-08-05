@@ -1,0 +1,25 @@
+/* menu.css — BEM, page-level layout only (sections style themselves) */
+
+.menu-page {
+  position: relative;
+  background: var(--base-100);
+  font-family: "Cairo", sans-serif;
+}
+
+.menu-page__nav-trigger {
+  position: fixed;
+  top: 2rem;
+  inset-inline-start: 2rem;
+  z-index: 120;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .menu-page__nav-trigger {
+    top: 1.25rem;
+    inset-inline-start: 1.25rem;
+  }
+}

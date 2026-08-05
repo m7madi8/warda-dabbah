@@ -3,14 +3,13 @@ import gsap from "gsap";
 import { ScrollSmoother } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Navbar from "../components/Navbar/Navbar";
 import { useEffect } from "react";
 import { initLenis } from "../lib/lenis";
 import PreloaderII from "../components/Preloader/PreloaderII";
-import ReserveBtn from "../components/Buttons/ReserveBtn";
 import Logo from "../components/Buttons/Logo";
 import Footer from "../components/Footer/Footer";
 import FooterTitle from "../components/Footer/FooterTitle";
+import Menu from "../components/Menu";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -29,8 +28,7 @@ const MainLayout = () => {
         <>
             <PreloaderII />
             <Logo />
-            <ReserveBtn />
-            <Navbar />
+            <Menu />
             <div id="smooth-wrapper">
                 <div id="smooth-content">
                     <main>

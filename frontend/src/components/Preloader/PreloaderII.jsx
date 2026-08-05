@@ -21,41 +21,26 @@ export default function PreloaderII() {
         });
 
         gsap.set(splits.nameChars.chars, { y: "110%" });
-        gsap.set(".preloader-counter", { opacity: 0, y: 10 });
         gsap.set(".preloader-progress-fill", { scaleX: 0 });
-
-        const counter = { value: 0 };
+        gsap.set(".preloader-logo", { opacity: 0, scale: 0.96 });
 
         const tl = gsap.timeline({ delay: 0.3 });
 
-        tl.to(splits.nameChars.chars, {
-            y: "0%",
-            stagger: 0.08,
-            duration: 0.9,
-            ease: "power4.out",
+        tl.to(".preloader-logo", {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            ease: "power2.out",
         })
             .to(
-                ".preloader-counter",
+                splits.nameChars.chars,
                 {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5,
-                    ease: "power2.out",
+                    y: "0%",
+                    stagger: 0.08,
+                    duration: 0.9,
+                    ease: "power4.out",
                 },
-                "-=0.2"
-            )
-            .to(
-                counter,
-                {
-                    value: 100,
-                    duration: 2.2,
-                    ease: "power2.inOut",
-                    onUpdate: () => {
-                        const el = document.querySelector(".preloader-counter");
-                        if (el) el.textContent = `${Math.round(counter.value)}%`;
-                    },
-                },
-                "-=0.1"
+                "-=0.4"
             )
             .to(
                 ".preloader-progress-fill",
@@ -64,7 +49,7 @@ export default function PreloaderII() {
                     duration: 2.2,
                     ease: "power2.inOut",
                 },
-                "<"
+                "-=0.2"
             )
             .to({}, { duration: 0.35 })
             .to(
@@ -78,7 +63,7 @@ export default function PreloaderII() {
                 "exit"
             )
             .to(
-                ".preloader-counter",
+                ".preloader-logo",
                 {
                     opacity: 0,
                     duration: 0.4,
@@ -126,8 +111,6 @@ export default function PreloaderII() {
                     <div className="preloader-progress-track">
                         <div className="preloader-progress-fill" />
                     </div>
-
-                    <div className="preloader-counter">0%</div>
                 </div>
             </div>
 

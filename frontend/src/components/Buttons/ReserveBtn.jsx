@@ -12,7 +12,7 @@ const ReserveBtn = () => {
 
     return (
         <div className="relative z-49" onClick={handleClick}>
-            <div className="absolute left-4 md:left-6 top-4 md:top-[2vw] px-1 py-1 flex justify-end items-center rounded-4xl gap-2 cursor-pointer bg-[var(--base-300)]">
+            <div className="absolute left-4 md:left-6 top-4 md:top-[2vw] px-1 py-1 hidden md:flex justify-end items-center rounded-4xl gap-2 cursor-pointer bg-[var(--base-300)]">
                 <AnimateBtn btnName="تواصل"/>
                 <MdArrowBack className="bg-[var(--base-200)] text-[var(--natural)] w-6 md:w-[2.5vw] h-auto md:h-auto rounded-full p-1" />
             </div>
