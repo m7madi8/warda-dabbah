@@ -132,10 +132,10 @@ const Reserve = () => {
       <button
         type="button"
         onClick={openModal}
-        className="reserve-trigger fixed top-1/2 end-8 -translate-y-1/2 z-[95] inline-flex items-center gap-3 rounded-full bg-white pr-3 pl-4 py-4 shadow-lg"
+        className="reserve-trigger fixed z-[95] inline-flex items-center gap-2.5 md:gap-3 rounded-full bg-white/90 md:bg-white backdrop-blur-md md:backdrop-blur-none pr-3 pl-4 py-2.5 md:py-4 shadow-lg hover:shadow-xl transition-all duration-300"
       >
         <span className="reserve-trigger__label">احجز استشارة</span>
-        <span className="reserve-trigger__icon flex items-center justify-center rounded-full bg-[var(--base-300)] text-[var(--base-100)] w-10 h-10">
+        <span className="reserve-trigger__icon flex items-center justify-center rounded-full bg-[var(--base-300)] text-[var(--base-100)] w-8 h-8 md:w-10 md:h-10">
           <FiArrowUpRight />
         </span>
       </button>

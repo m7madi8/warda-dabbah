@@ -9,20 +9,42 @@
   border: none;
   cursor: pointer;
   font-family: "Cairo", sans-serif;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .reserve-trigger {
+    top: auto;
+    bottom: 5.25rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  }
+
+  .reserve-trigger:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+
+  .reserve-trigger__label {
+    font-size: 0.825rem;
+    font-weight: 700;
+  }
 }
 
 @media (min-width: 769px) {
   .reserve-trigger {
     top: 4rem;
     left: 2rem;
+    right: auto;
+    bottom: auto;
     transform: none;
   }
-}
 
-.reserve-trigger:hover {
-  transform: translateX(-3px);
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--base-300) 25%, transparent);
+  .reserve-trigger:hover {
+    transform: translateX(-3px);
+    box-shadow: 0 12px 28px color-mix(in srgb, var(--base-300) 25%, transparent);
+  }
 }
 
 .reserve-trigger__label {
