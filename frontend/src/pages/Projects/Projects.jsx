@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useState, useRef, useMemo, useEffect, useCallback } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -11,6 +11,8 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Projects = () => {
   const pageRef = useRef(null);
+  const gridRef = useRef(null);
+  const filterRef = useRef(null);
   const location = useLocation();
 
   const [activeCategory, setActiveCategory] = useState("all");
@@ -33,10 +35,68 @@ const Projects = () => {
     return found ? found.name : categoryId;
   };
 
-  const handleFilterChange = (categoryId) => {
-    if (categoryId === activeCategory) return;
-    setActiveCategory(categoryId);
+  // Count projects per category
+  const getCategoryCount = (categoryId) => {
+    if (categoryId === "all") return projects.length;
+    return projects.filter((p) => p.category === categoryId).length;
   };
+
+  // Animated filter transition
+  const handleFilterChange = useCallback(
+    (categoryId) => {
+      if (categoryId === activeCategory) return;
+
+      const cards = gridRef.current?.querySelectorAll(".projects-card");
+      if (cards && cards.length > 0) {
+        gsap.to(cards, {
+          opacity: 0,
+          y: 20,
+          duration: 0.3,
+          stagger: 0.04,
+          ease: "power2.in",
+          onComplete: () => {
+            setActiveCategory(categoryId);
+          },
+        });
+      } else {
+        setActiveCategory(categoryId);
+      }
+    },
+    [activeCategory]
+  );
+
+  // Keyboard navigation for filter bar (roving tabindex)
+  const handleFilterKeyDown = useCallback(
+    (e) => {
+      const buttons = filterRef.current?.querySelectorAll(".projects-filter__btn");
+      if (!buttons) return;
+      const btnArray = Array.from(buttons);
+      const currentIndex = btnArray.indexOf(document.activeElement);
+      if (currentIndex === -1) return;
+
+      let nextIndex = -1;
+      if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+        e.preventDefault();
+        nextIndex = (currentIndex + 1) % btnArray.length;
+      } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+        e.preventDefault();
+        nextIndex = (currentIndex - 1 + btnArray.length) % btnArray.length;
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        nextIndex = 0;
+      } else if (e.key === "End") {
+        e.preventDefault();
+        nextIndex = btnArray.length - 1;
+      }
+
+      if (nextIndex >= 0) {
+        btnArray[currentIndex].setAttribute("tabindex", "-1");
+        btnArray[nextIndex].setAttribute("tabindex", "0");
+        btnArray[nextIndex].focus();
+      }
+    },
+    []
+  );
 
   // أنيميشن دخول الهيدر عند تحميل الصفحة
   useGSAP(
@@ -87,22 +147,21 @@ const Projects = () => {
   );
 
   // أنيميشن دخول بطاقات المشاريع - يُعاد تشغيله عند تغيير التصنيف
-  // (إعادة الإنشاء عبر dependencies تمنح تأثير "smooth filter transition" تلقائياً)
   useGSAP(
     () => {
       if (!filteredProjects.length) return;
       gsap.fromTo(
         ".projects-card",
-        { y: 50, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
+          duration: 0.7,
+          stagger: 0.12,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".projects-grid",
-            start: "top 80%",
+            start: "top 85%",
           },
         }
       );
@@ -127,16 +186,28 @@ const Projects = () => {
       </header>
 
       {/* ==== شريط التصفية ==== */}
-      <nav className="projects-filter" aria-label="تصفية المشاريع حسب التصنيف">
-        <div className="projects-filter__inner max-w-7xl mx-auto px-4 md:px-8 flex flex-wrap items-center justify-center gap-3">
-          {categories.map((category) => {
+      <nav
+        className="projects-filter"
+        aria-label="تصفية المشاريع حسب التصنيف"
+      >
+        <div
+          ref={filterRef}
+          role="tablist"
+          aria-label="تصنيفات المشاريع"
+          onKeyDown={handleFilterKeyDown}
+          className="projects-filter__inner max-w-7xl mx-auto px-4 md:px-8 flex flex-wrap items-center justify-center gap-3"
+        >
+          {categories.map((category, i) => {
             const isActive = category.id === activeCategory;
             return (
               <button
                 key={category.id}
                 type="button"
+                role="tab"
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => handleFilterChange(category.id)}
-                aria-pressed={isActive}
+                aria-selected={isActive}
+                aria-controls="projects-grid-panel"
                 className={`projects-filter__btn rounded-full px-7 py-2.5 transition-colors duration-300 ${
                   isActive
                     ? "projects-filter__btn--active bg-[var(--base-300)] text-[var(--base-100)]"
@@ -144,6 +215,9 @@ const Projects = () => {
                 }`}
               >
                 {category.name}
+                <span className="projects-filter__count">
+                  ({getCategoryCount(category.id)})
+                </span>
               </button>
             );
           })}
@@ -151,31 +225,37 @@ const Projects = () => {
       </nav>
 
       {/* ==== شبكة المشاريع ==== */}
-      <section className="projects-grid-section max-w-7xl mx-auto px-4 md:px-8">
+      <section
+        id="projects-grid-panel"
+        role="tabpanel"
+        className="projects-grid-section max-w-7xl mx-auto px-4 md:px-8"
+      >
         {filteredProjects.length > 0 ? (
-          <div className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={gridRef} className="projects-grid">
             {filteredProjects.map((project) => (
               <Link
                 key={project.id}
                 to={`/projects/${project.id}`}
-                className="projects-card group cursor-pointer transition-transform duration-500 hover:-translate-y-2"
+                className="projects-card group"
+                aria-label={`عرض مشروع ${project.title}`}
               >
-                <div className="projects-card__image-wrap relative rounded-2xl overflow-hidden h-64 md:h-80">
+                <div className="projects-card__image-wrap">
                   <img
                     src={project.coverImage}
-                    alt={project.title}
+                    alt={`صورة غلاف مشروع ${project.title}`}
                     loading="lazy"
-                    className="projects-card__img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    decoding="async"
+                    className="projects-card__img"
                   />
-                  <div className="projects-card__overlay absolute inset-0 flex items-end justify-center pb-7 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span className="projects-card__overlay-text inline-flex items-center gap-2 px-5 py-2.5 rounded-full backdrop-blur-[20px] bg-white/10 border border-white/30 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="projects-card__overlay">
+                    <span className="projects-card__overlay-text">
                       <FiEye />
                       عرض التفاصيل
                     </span>
                   </div>
                 </div>
-                <div className="projects-card__info pt-5 px-1">
-                  <h3 className="projects-card__title">{project.title}</h3>
+                <div className="projects-card__info">
+                  <h2 className="projects-card__title">{project.title}</h2>
                   <span className="projects-card__category">
                     {getCategoryName(project.category)}
                   </span>
@@ -184,9 +264,20 @@ const Projects = () => {
             ))}
           </div>
         ) : (
-          <p className="projects-empty">
-            لا توجد مشاريع ضمن هذا التصنيف حالياً
-          </p>
+          <div className="projects-empty">
+            <span className="projects-empty__line" />
+            <span className="projects-empty__eyebrow">No Projects</span>
+            <p className="projects-empty__text">
+              لا توجد مشاريع ضمن هذا التصنيف حالياً — يمكنك استعراض جميع أعمالنا
+            </p>
+            <button
+              type="button"
+              className="projects-empty__reset"
+              onClick={() => setActiveCategory("all")}
+            >
+              عرض جميع المشاريع
+            </button>
+          </div>
         )}
       </section>
     </div>
